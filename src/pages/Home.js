@@ -1,11 +1,12 @@
 import React from 'react'
 import LoginForm from '../components/LoginForm'
+import NavBar from '../components/NavBar'
 
-const Home = () => {
+const Home = ({authenticated , onAuthenticated}) => {
   return (
     <div>
       <h1>Home</h1>
-      <LoginForm />
+      {authenticated ? '' : (<LoginForm onAuthenticated={onAuthenticated}/>)  }
     </div>
   )
 }

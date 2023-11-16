@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 
-const Index = () => {
+const Index = ({authenticated}) => {
 
 	const [festivals, setFestivals] = useState([])
 	const FESTIVALS_API = 'https://festivals-api.vercel.app/api/festivals'
@@ -22,12 +22,12 @@ const Index = () => {
 			})
 	}
 
-	if (festivals.length === 0) return 'no festivals'
+	// if (festivals.length === 0) return 'no festivals'
 
 	const festivalList = festivals.map((festival, index) => {
 		return (
 			<div key={index}>
-				<p>TITLE : <Link to={`/festivals/${festival._id}`}>{festival.title}</Link></p>
+				<p>TITLE : {authenticated ? (<Link to={`/festivals/show/${festival._id}`}>{festival.title}</Link>) : festival.title } </p>
 				<p>DESCRIPTION : {festival.description}</p>
 			</div>
 		)
